@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div ng-app="myApp" ng-controller="MyCtrl as myCtrl">
+    <div>
+        Status: {{myCtrl.status ? myCtrl.status : 'Waiting...'}}
+    </div>
+    <div>
+        <button ng-click="myCtrl.addTimer(5)">Add timer</button>
+    </div>
+    <div ng-repeat="timer in myCtrl.timers">
+        <div>
+            <h3>Timer {{::timer.id}}</h3>
+            <button ng-click="myCtrl.removeTimer($index)">X</button>
+            <my-timer start-seconds="{{timer.seconds}}" on-finish="myCtrl.status = 'Timer ' + timer.id + ' finished at ' + myCtrl.$endTime"></my-timer>
+        </div>
+    </div>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.7.7/angular.min.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>
